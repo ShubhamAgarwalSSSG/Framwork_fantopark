@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "./option[normalize-space(@aria-disabled=\"false\") = \"Abu Dhabi F1 Race Experience\"]|./optgroup/option[normalize-space(@aria-disabled=\"false\") = \"Abu Dhabi F1 Race Experience\"]"
+}

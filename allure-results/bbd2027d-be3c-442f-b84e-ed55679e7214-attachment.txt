@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "./option[normalize-space(@aria-disabled=\"false\") = \"India's Tour of Australia - Boxing Day Test 2024\"]|./optgroup/option[normalize-space(@aria-disabled=\"false\") = \"India's Tour of Australia - Boxing Day Test 2024\"]"
+}

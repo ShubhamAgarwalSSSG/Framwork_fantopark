@@ -1,0 +1,35 @@
+{
+  "script": "<script> [155 bytes]",
+  "args": [
+    {
+      "sessionId": "4645ED12-EA76-4457-A147-5E9095A36702",
+      "elementId": "node-5C4A3C9C-4058-4B99-885E-7AD4E8BC003E",
+      "element-6066-11e4-a52e-4f735466cecf": "node-5C4A3C9C-4058-4B99-885E-7AD4E8BC003E",
+      "selector": "//*[@id=\"root\"]/div/div/div[1]/div[3]/div[2]/div/div[2]/form/div[1]/div[4]/div/div[1]/div[2]/div",
+      "parent": {
+        "sessionId": "4645ED12-EA76-4457-A147-5E9095A36702",
+        "capabilities": {
+          "safari:platformVersion": "14.5",
+          "safari:automaticInspection": false,
+          "webkit:WebRTC": {
+            "DisableICECandidateFiltering": false,
+            "DisableInsecureMediaCapture": false
+          },
+          "browserVersion": "17.5",
+          "strictFileInteractability": false,
+          "browserName": "Safari",
+          "safari:useSimulator": false,
+          "safari:automaticProfiling": false,
+          "safari:platformBuildVersion": "23F79",
+          "acceptInsecureCerts": false,
+          "setWindowRect": true,
+          "platformName": "macOS",
+          "safari:diagnose": false,
+          "wdio:driverPID": 79368
+        }
+      },
+      "isReactElement": false,
+      "isShadowElement": false
+    }
+  ]
+}
