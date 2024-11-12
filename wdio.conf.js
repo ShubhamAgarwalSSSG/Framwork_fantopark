@@ -48,13 +48,15 @@ export const config = {
   // https://saucelabs.com/platform/platform-configurator
   //
   capabilities: [
-    // {
-    //   browserName: "chrome",
-    // },
     {
       browserName: "safari",
+      platformName: "macOS",
+      "safari.options": {
+        technologyPreview: false, // Set to true if using Safari Technology Preview
+      },
     },
   ],
+  services: ["selenium-standalone"],
 
   //
   // ===================
@@ -97,7 +99,7 @@ export const config = {
   connectionRetryTimeout: 120000,
   //
   // Default request retries count
-  connectionRetryCount: 2,
+  connectionRetryCount: 3,
   //
   // Test runner services
   // Services take over a specific job you don't want to take care of. They enhance
