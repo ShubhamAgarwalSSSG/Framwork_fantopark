@@ -14,11 +14,38 @@ describe("Open the browser and perform actions", function () {
 
   describe("Verify the nav buttons are clickable", function () {
     it("Verify Instagram button is clickable", async function () {
-      const instaButton = await $(
-        '//*[@id="root"]/div/div/div[1]/div[2]/div/a[1]'
-      );
+      const instaButton = await $('//*[@id="home_insta"]');
       //*[@id="root"]/div/div/div[1]/div[2]/div/a[1]
+      //*[@id="home_insta"]
       await single_click(instaButton);
+      // Use the imported single_click method
+      // <------------>--------------handle ------------------------>
+      const mainWindowHandle = await browser.getWindowHandle();
+      // Get all window handles
+      const allWindowHandles = await browser.getWindowHandles();
+
+      // Assert that a new window was opened
+      expect(allWindowHandles.length).toBeGreaterThan(1);
+
+      // Switch to the new tab
+      const newTabHandle = allWindowHandles.find(
+        (handle) => handle !== mainWindowHandle
+      );
+      await browser.switchToWindow(newTabHandle);
+      // Verify the new tab's URL or Title
+      const newTabURL = await browser.getUrl();
+      console.log(newTabURL);
+
+      // Close the new tab if necessary and switch back to the main window
+      await browser.closeWindow();
+      await browser.switchToWindow(mainWindowHandle);
+    });
+
+    it("Verify Linkedin button is clickable", async function () {
+      const linked = await $('//*[@id="home_linkedin"]');
+      //*[@id="home_linkedin"]
+      //*[@id="root"]/div/div/div[1]/div[2]/div/a[2]/svg
+      await single_click(linked);
       // Use the imported single_click method
       // <------------>--------------handle ------------------------>
       const mainWindowHandle = await browser.getWindowHandle();
@@ -43,40 +70,10 @@ describe("Open the browser and perform actions", function () {
     });
 
     it("Verify youtube button is clickable", async function () {
-      const instaButton = await $(
-        '//*[@id="root"]/div/div/div[1]/div[2]/div/a[2]'
-      );
+      const youtube = await $('//*[@id="home_youtube"]');
+      //*[@id="home_youtube"]
       //*[@id="root"]/div/div/div[1]/div[2]/div/a[2]/svg
-      await single_click(instaButton);
-      // Use the imported single_click method
-      // <------------>--------------handle ------------------------>
-      const mainWindowHandle = await browser.getWindowHandle();
-      // Get all window handles
-      const allWindowHandles = await browser.getWindowHandles();
-
-      // Assert that a new window was opened
-      expect(allWindowHandles.length).toBeGreaterThan(1);
-
-      // Switch to the new tab
-      const newTabHandle = allWindowHandles.find(
-        (handle) => handle !== mainWindowHandle
-      );
-      await browser.switchToWindow(newTabHandle);
-      // Verify the new tab's URL or Title
-      const newTabURL = await browser.getUrl();
-      console.log(newTabURL);
-
-      // Close the new tab if necessary and switch back to the main window
-      await browser.closeWindow();
-      await browser.switchToWindow(mainWindowHandle);
-    });
-
-    it("Verify linkedin button is clickable", async function () {
-      const instaButton = await $(
-        '//*[@id="root"]/div/div/div[1]/div[2]/div/a[3]'
-      );
-      //*[@id="root"]/div/div/div[1]/div[2]/div/a[2]/svg
-      await single_click(instaButton);
+      await single_click(youtube);
       // Use the imported single_click method
       // <------------>--------------handle ------------------------>
       const mainWindowHandle = await browser.getWindowHandle();

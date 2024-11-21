@@ -7,28 +7,40 @@ describe("Open the browser and perform actions", function () {
     await browser.maximizeWindow();
   });
 
-  it("verify the is video is clickable ", async function () {
-    let first_video = $(
-      '//*[@id="root"]/div/div/div[2]/div/main/div/div[5]/div[3]/div[1]/div/div'
-    );
-    await browser.pause(3000);
-    single_click(first_video);
+  it("verify if the video is playable", async function () {
+    const videoContainers = await $$('//*[@id="video_player"]'); // Adjusted XPath
+    console.log(`Total child video elements found: ${videoContainers.length}`);
+    // Step 1: Locate the video thumbnail element and click to open the modal
+    const videoThumbnail = await $('//*[@id="video_player"]');
+    await videoThumbnail.waitForDisplayed({ timeout: 5000 });
+    await single_click(videoThumbnail); // Assuming single_click is a wrapper for .click()
+    await browser.pause(2000); // Allow time for modal to load
 
-    // <-------------------to close the vedio-->>>
+    // Step 2: Wait for the modal's play button to appear
+    const playButton = await $('//*[@id="video_play"]'); // Adjust selector as needed
+    await playButton.waitForDisplayed({ timeout: 5000 });
+
+    // Step 3: Click the play button twice to ensure playback starts
+    await playButton.click();
+    await browser.pause(2000); // Pause briefly between clicks
+    await playButton.click();
+
+    // Step 4: Wait for a few seconds to ensure the video starts playing
     await browser.pause(5000);
-    let element = await $('//*[@id="video_close"]');
 
-    await element.click();
+    // Optional: Verify the video is playing
+    const videoElement = await $('//*[@id="video_play"]'); // Replace with the correct selector for the video element
+    const isPlaying = await browser.execute((video) => {
+      return video && !video.paused && !video.ended;
+    }, videoElement);
 
-    await browser.pause(5000);
+    console.log("Is the video playing? ", isPlaying);
+
+    // Step 5: Close the modal (if applicable)
+    const closeButton = await $('//*[@id="video_close"]'); // Replace with the actual selector
+    await closeButton.waitForDisplayed({ timeout: 5000 });
+    await closeButton.click();
+
+    await browser.pause(2000); // Allow time for the modal to close
   });
 });
-
-//*[@id="root"]/div/div/div[2]/div/main/div/div[5]/div[3]/div[2]/div/div
-//*[@id="root"]/div/div/div[2]/div/main/div/div[5]/div[3]/div[2]/div[2]
-
-//*[@id="movie_player"]/div[4]/button
-//*[@id="movie_player"]/div[4]/button
-
-//*[@id="root"]/div/div/div[2]/div/main/div/div[5]/div[3]/div[2]/div/div
-//*[@id="root"]/div/div/div[2]/div/main/div/div[5]/div[3]/div[3]/img

@@ -8,78 +8,54 @@ describe("Open the browser and perform actions", function () {
     await browser.maximizeWindow();
     await browser.pause(2000);
   });
-  //   it("verify the Enquire module is open onclick", async function () {
-  //     let clickEnq = $('//*[@id="root"]/div/div/div[1]/div[2]/button/span');
-  //     single_click(clickEnq);
-  //     await browser.pause(2000);
-  //   });
+  it("verify the Enquire module is open onclick", async function () {
+    let clickEnq = $('//*[@id="trips_button"]');
+    //*[@id="trips_button"]
 
-  it("verify the individual tournament Enquire in clickable", async function () {
-    let clickEnq = $(
-      '//*[@id="root"]/div/div/div[2]/div/main/div/div[2]/div[2]/div/div/div/div[1]/div/div[2]/div[2]/button'
-    );
+    //*[@id="root"]/div/div/div[1]/div[2]/button/span
     single_click(clickEnq);
     await browser.pause(2000);
   });
-  it("verify the tour plan", async function () {
-    // Step 1: Locate the parent element using XPath
-    let planDetails = await $(
-      '//*[@id="root"]/div/div/div[2]/div/main/div[3]/div/div[1]/div/div[2]/div[2]'
-    );
 
-    // Step 2: Wait for the parent element to be displayed
-    await planDetails.waitForDisplayed({ timeout: 5000 });
+  it("verify tour plans taps", async function () {
+    // Find all div elements with the same ID
+    const divElements = await $$('//*[@id="tour_list"]');
 
-    // Step 3: Check if the parent element exists and is visible
-    if (!(await planDetails.isExisting())) {
-      console.error("Parent element not found.");
-      return;
+    // Get the count of matching elements
+    const count = divElements.length;
+    console.log(`Total Divs with ID "duplicate-id": ${count}`);
+
+    // Loop through each div and perform an action
+    for (let i = 0; i < count; i++) {
+      console.log(`Performing action on Div #${i + 1}`);
+      await browser.pause(2000);
+      // Example: Get text content of each div
+      const text = await divElements[i].getText();
+      console.log(`Text of Div #${i + 1}:`, text);
+      await browser.pause(2000);
+      // Example: Click on each div
+      await divElements[i].click();
     }
-
-    // Step 4: Try to get the direct child div elements using a different approach (XPath)
-    let childElements = await planDetails.$$("./div"); // XPath to select direct child div elements
-
-    console.log("Number of direct child divs: ", childElements.length);
-
-    // Optional Step: Interact with the first child element (if exists)
-    if (childElements.length > 0) {
-      await childElements[0].waitForDisplayed({ timeout: 5000 });
-      await childElements[0].click(); // Example interaction
-    }
-
-    // Pause for observation
-    await browser.pause(2000);
   });
-  it("verify the tour plan second option", async function () {
-    // Step 1: Locate the parent element using XPath
-    let planDetails_1 = await $(
-      '//*[@id="root"]/div/div/div[2]/div/main/div[3]/div/div[1]/div/div[2]/div[2]/div[1]/button'
-    );
+  it("verify Freuestly asked Question taps", async function () {
+    // Find all div elements with the same ID
+    const divElements = await $$('//*[@id="asked_question"]');
 
-    // Step 2: Wait for the parent element to be displayed
-    await planDetails_1.waitForDisplayed({ timeout: 5000 });
-    single_click(planDetails_1);
+    // Get the count of matching elements
+    const count = divElements.length;
+    console.log(`Total Divs with ID "duplicate-id": ${count}`);
 
-    // Step 3: Check if the parent element exists and is visible
-    // if (!(await planDetails.isExisting())) {
-
-    //   console.error("Parent element not found.");
-    //   return;
-    // }
-
-    // Step 4: Try to get the direct child div elements using a different approach (XPath)
-    // let childElements = await planDetails.$$("./div"); // XPath to select direct child div elements
-
-    // console.log("Number of direct child divs: ", childElements.length);
-
-    // // Optional Step: Interact with the first child element (if exists)
-    // if (childElements.length > 0) {
-    //   await childElements[0].waitForDisplayed({ timeout: 5000 });
-    //   await childElements[0].click(); // Example interaction
-    // }
-
-    // Pause for observation
-    await browser.pause(2000);
+    // Loop through each div and perform an action
+    for (let i = 0; i < count; i++) {
+      console.log(`Performing action on Div #${i + 1}`);
+      await browser.pause(2000);
+      // Example: Get text content of each div
+      const text = await divElements[i].getText();
+      console.log(`Text of Div #${i + 1}:`, text);
+      await browser.pause(2000);
+      // Example: Click on each div
+      await divElements[i].click();
+    }
   });
 });
 

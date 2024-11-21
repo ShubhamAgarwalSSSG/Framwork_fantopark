@@ -1,3 +1,4 @@
+let currentSessionId = null;
 export const config = {
   //
   // ====================
@@ -143,6 +144,43 @@ export const config = {
   // =====
   // Hooks
   // =====
+
+  beforeTest: async function () {
+    currentSessionId = browser.sessionId;
+    console.log(`Running test with session ID: ${currentSessionId}`);
+  },
+  // Hook to clear cookies, cache, and delete session after tests
+
+  afterTest: async function (
+    test,
+    context,
+    { error, result, duration, passed, retries }
+  ) {
+    try {
+      // Clear cookies
+      await browser.deleteCookies();
+      console.log("Cookies cleared during afterTest.");
+
+      // Clear cache (localStorage and sessionStorage)
+      await browser.execute(() => {
+        localStorage.clear();
+        sessionStorage.clear();
+      });
+      console.log(
+        "Cache (localStorage & sessionStorage) cleared during afterTest."
+      );
+    } catch (error) {
+      console.error(
+        "Error clearing cookies or cache during afterTest:",
+        error.message
+      );
+    }
+  },
+
+  afterSession: async function (config, capabilities, specs) {
+    // Just for logging; no cleanup operations here
+    console.log("Session cleanup completed by WebdriverIO.");
+  },
   // WebdriverIO provides several hooks you can use to interfere with the test process in order to enhance
   // it and to build services around it. You can either apply a single function or an array of
   // methods to it. If one of them returns with a promise, WebdriverIO will wait until that promise got
@@ -233,15 +271,15 @@ export const config = {
    * @param {boolean} result.passed    true if test has passed, otherwise false
    * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
    */
-  afterTest: async function (
-    test,
-    context,
-    { error, result, duration, passed, retries }
-  ) {
-    if (!passed) {
-      await browser.takeScreenshot();
-    }
-  },
+  // afterTest: async function (
+  //   test,
+  //   context,
+  //   { error, result, duration, passed, retries }
+  // ) {
+  //   if (!passed) {
+  //     await browser.takeScreenshot();
+  //   }
+  // },
 
   /**
    * Hook that gets executed after the suite has ended

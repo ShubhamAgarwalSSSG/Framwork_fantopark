@@ -21,6 +21,7 @@ class Element_action {
   }
   async onClick(element) {
     await element.waitForDisplay(); // Always use 'await' for asynchronous actions
+    await element.click();
     await element.click(); // Fetch the current page title
     await browser.pause(2000);
   }
@@ -35,3 +36,4 @@ class Element_action {
 
 export const single_click = new Element_action().single_click;
 export const getTitlePage = new Element_action().getTitlePage;
+export const onClick = new Element_action().onClick;

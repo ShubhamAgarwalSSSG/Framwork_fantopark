@@ -12,7 +12,15 @@ class Enquire {
   get referral() {
     return $('//*[@id="referral"]');
   }
-
+  get checkbox() {
+    return $('//*[@id="enquire_checkbox"]');
+  }
+  get sumit_button() {
+    return $('//*[@id="submit_enquire_button"]');
+  }
+  get Location() {
+    return $('//*[@id="location"]');
+  }
   //  to perform some action
 }
 
