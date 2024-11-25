@@ -1,0 +1,4 @@
+{
+  "using": "css selector",
+  "value": "div[contains(@class, \"iti__tel-input\")]"
+}

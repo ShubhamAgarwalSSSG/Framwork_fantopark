@@ -1,7 +1,7 @@
 import { single_click } from "../common_action/action";
 import Enquire from "../page_list/Enquire";
 
-describe("Open the browser and perform actions", function () {
+describe("Open the browser and verify the individual Inquiry of the leads,", function () {
   before(async function () {
     await browser.url("http://fantoparkdev.com/");
     await browser.maximizeWindow();
@@ -16,8 +16,49 @@ describe("Open the browser and perform actions", function () {
     // expect(await clickEnq.isClickable()).toBe(true);
     await browser.pause(2000);
   });
-  // <-------Add_calc----->
+  //  <----------------tour details---------------->
+  it("verify tour plans taps", async function () {
+    // Find all div elements with the same ID
+    const divElements = await $$('//*[@id="tour_list"]');
 
+    // Get the count of matching elements
+    const count = divElements.length;
+    console.log(`Total Divs with ID "duplicate-id": ${count}`);
+
+    // Loop through each div and perform an action
+    for (let i = 0; i < count; i++) {
+      console.log(`Performing action on Div #${i + 1}`);
+      await browser.pause(1000);
+      // Example: Get text content of each div
+      const text = await divElements[i].getText();
+      console.log(`Text of Div #${i + 1}:`, text);
+      await browser.pause(1000);
+      // Example: Click on each div
+      await divElements[i].click();
+    }
+  });
+  it("verify Freuestly asked Question taps", async function () {
+    // Find all div elements with the same ID
+    const divElements = await $$('//*[@id="asked_question"]');
+
+    // Get the count of matching elements
+    const count = divElements.length;
+    console.log(`Total Divs with ID "duplicate-id": ${count}`);
+
+    // Loop through each div and perform an action
+    for (let i = 0; i < count; i++) {
+      console.log(`Performing action on Div #${i + 1}`);
+      await browser.pause(1000);
+      // Example: Get text content of each div
+      const text = await divElements[i].getText();
+      console.log(`Text of Div #${i + 1}:`, text);
+      await browser.pause(1000);
+      // Example: Click on each div
+      await divElements[i].click();
+    }
+  });
+  // <-----------------to fill form-------------------->
+  // <-------Add_calc----->
   it("verify the tour for 2 persons is added", async function () {
     let addPerson = await $('//*[@id="person_add"]');
     //*[@id="root"]/div/div/div[2]/div/main/div[3]/div/div[2]/div/div[2]/div[2]/div[2]/div/div[2]/button[2]
@@ -25,7 +66,7 @@ describe("Open the browser and perform actions", function () {
     await single_click(addPerson);
     await single_click(addPerson);
     expect(await addPerson.isClickable()).toBe(true);
-    await browser.pause(2000);
+    await browser.pause(1000);
   });
 
   it("verify subitional service ", async function () {
@@ -34,14 +75,14 @@ describe("Open the browser and perform actions", function () {
     //*[@id="root"]/div/div/div[2]/div/main/div[3]/div/div[2]/div/div[2]/div[3]/div[2]/div/ul/li[1]/label
     await single_click(addService);
     // expect(await addService.isSelected()).toBe(true);
-    await browser.pause(2000);
+    await browser.pause(1000);
   });
   it("verify subitional service ", async function () {
     let addService = await $('//*[@id="additional_service"]');
     //*[@id="additional_service"]
     await single_click(addService);
     expect(await addService.isSelected()).toBe(true);
-    await browser.pause(2000);
+    await browser.pause(1000);
   });
 
   it("verify proceed to book button is clickable", async function () {
@@ -50,19 +91,19 @@ describe("Open the browser and perform actions", function () {
     //*[@id="root"]/div/div/div[2]/div/main/div[3]/div/div[2]/div/div[2]/div[6]/button
     await single_click(proceedButton);
     // expect(await proceedButton.isClickable()).toBe(true);
-    await browser.pause(2000);
+    await browser.pause(1000);
   });
 
   it("verify user enters their name", async function () {
     await Enquire.username.setValue("shubham");
     expect(await Enquire.username.getValue()).toBe("shubham");
-    await browser.pause(2000);
+    await browser.pause(1000);
   });
 
   it("verify user enters their email", async function () {
     await Enquire.email.setValue("shubhamagrwal@gmail.com");
     expect(await Enquire.email.getValue()).toBe("shubhamagrwal@gmail.com");
-    await browser.pause(2000);
+    await browser.pause(1000);
   });
 
   it("verify user enters their phone number", async function () {
@@ -72,7 +113,7 @@ describe("Open the browser and perform actions", function () {
     await phone_path.waitForDisplayed({ timeout: 5000 });
     phone_path.click();
     // phone_path.click();
-    await browser.pause(2000);
+    await browser.pause(1000);
     phone_path.setValue("8768181912");
 
     // expect(await Enquire.phone_path.getValue()).toBe("8768181912");
@@ -82,7 +123,7 @@ describe("Open the browser and perform actions", function () {
   it("verify user enters referral code", async function () {
     await Enquire.referral.setValue("123");
     expect(await Enquire.referral.getValue()).toBe("123");
-    await browser.pause(2000);
+    await browser.pause(1000);
   });
   // Noida, Gautam Buddha Nagar, Uttar Pradesh, IND
   it("verify user Location", async function () {
@@ -92,13 +133,13 @@ describe("Open the browser and perform actions", function () {
     expect(await Enquire.Location.getValue()).toBe(
       "Noida, Gautam Buddha Nagar, Uttar Pradesh, IND"
     );
-    await browser.pause(2000);
+    await browser.pause(1000);
   });
 
   it("verify checkbox is checked", async function () {
     let checkbox = $('//*[@id="enquire_checkbox"]'); //*[@id="enquire_checkbox"]
     single_click(checkbox);
-    await browser.pause(2000);
+    await browser.pause(1000);
 
     // expect(await check.isSelected()).toBe(true);
   });
@@ -109,7 +150,7 @@ describe("Open the browser and perform actions", function () {
     single_click(sumit_button);
 
     // expect(await proceedButton.isClickable()).toBe(true);
-    await browser.pause(2000);
+    await browser.pause(1000);
   });
 });
 

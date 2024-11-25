@@ -21,7 +21,13 @@ export const config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
+
   specs: ["./test_fantopark/**/*.js"],
+  // specs: [
+  //   "./test_fantopark/page_test/Home_page.js",
+  //   "./test_fantopark/page_test/Enquire.test.js",
+  //   "./test_fantopark/page_test/Enquireindividual.datetest.js",
+  // ],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -42,7 +48,7 @@ export const config = {
   // and 30 processes will get spawned. The property handles how many capabilities
   // from the same test should run tests.
   //
-  maxInstances: 10,
+  maxInstances: 1,
   //
   // If you have trouble getting all important capabilities together, check out the
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -91,14 +97,14 @@ export const config = {
   // baseUrl: 'http://localhost:8080',
   //
   // Default timeout for all waitFor* commands.
-  waitforTimeout: 10000,
+  waitforTimeout: 120000,
   //
   // Default timeout in milliseconds for request
   // if browser driver or grid doesn't send response
   connectionRetryTimeout: 120000,
   //
   // Default request retries count
-  connectionRetryCount: 2,
+  connectionRetryCount: 3,
   //
   // Test runner services
   // Services take over a specific job you don't want to take care of. They enhance
@@ -137,7 +143,7 @@ export const config = {
   // See the full list at http://mochajs.org/
   mochaOpts: {
     ui: "bdd",
-    timeout: 60000,
+    timeout: 120000,
   },
 
   //

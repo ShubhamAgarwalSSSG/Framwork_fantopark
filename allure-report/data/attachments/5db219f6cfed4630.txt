@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "//input[@class=\"ytp-large-play-button ytp-button ytp-large-play-button-red-bg\"]"
+}
