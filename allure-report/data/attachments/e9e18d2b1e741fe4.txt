@@ -1,4 +1,0 @@
-{
-  "using": "css selector",
-  "value": " //*[@id=\"react-select-4-option-0\"]"
-}

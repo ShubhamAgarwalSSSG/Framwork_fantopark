@@ -1,4 +1,0 @@
-{
-  "using": "css selector",
-  "value": "iti__tel-input"
-}

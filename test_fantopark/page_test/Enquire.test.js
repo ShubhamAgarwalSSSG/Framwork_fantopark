@@ -1,14 +1,20 @@
+// const { addStep, addAttachment } = require("@wdio/allure-reporter").default;
 import { single_click } from "../common_action/action";
+import allureReporter from "@wdio/allure-reporter";
 import Enquire from "../page_list/Enquire";
 
 describe("Open the browser and verify the Inquiry of the leads,", function () {
   // Use before hook to open the browser and navigate to the URL
   before(async function () {
+    allureReporter.addFeature("webside Module");
+    allureReporter.addStory("Open the brower");
+    allureReporter.addStep("Navigate to Fantopark website");
     await browser.url("http://fantoparkdev.com/");
     await browser.maximizeWindow();
     await browser.pause(2000);
   });
   it("verify the Enquire module is open onclick", async function () {
+    allureReporter.addStep("verify the URL with title name");
     let clickEnq = $('//*[@id="home_button"]');
     //*[@id="home_button"]
     // ('//*[@id="root"]/div/div/div[1]/div[2]/button/span');
@@ -17,16 +23,19 @@ describe("Open the browser and verify the Inquiry of the leads,", function () {
   });
 
   it("verify user enter there name", async function () {
+    allureReporter.addStep("verify the URL with title name");
     Enquire.username.setValue("shubham");
 
     await browser.pause(2000);
   });
   it("verify user enter there email", async function () {
+    allureReporter.addStep("verify the URL with title name");
     Enquire.email.setValue("shubhamagrwal@gmail.com");
 
     await browser.pause(2000);
   });
   it("verify user enters their phone number", async function () {
+    allureReporter.addStep("verify the URL with title name");
     // await Enquire.phone.setValue("8768181912");
     let phone_path = $('//input[@class="iti__tel-input"]');
     // '//*[@id="root"]/div/div/div[1]/div[3]/div[2]/div/div[2]/form/div[1]/div[3]/div/div/input'
@@ -40,11 +49,13 @@ describe("Open the browser and verify the Inquiry of the leads,", function () {
     await browser.pause(2000);
   });
   it("verify user enter referral code", async function () {
+    allureReporter.addStep("verify the URL with title name");
     Enquire.referral.setValue("123");
 
     await browser.pause(2000);
   });
   it("verify user Location", async function () {
+    allureReporter.addStep("verify the URL with title name");
     await Enquire.Location.setValue(
       "Noida, Gautam Buddha Nagar, Uttar Pradesh, IND"
     );
@@ -57,6 +68,7 @@ describe("Open the browser and verify the Inquiry of the leads,", function () {
   //*[@id="custom-select_option"]
 
   it("verify to select the dropdown option", async function () {
+    allureReporter.addStep("verify the URL with title name");
     try {
       // Step 1: Click the input field to open the dropdown
       const dropdownInput = await $('//*[@id="react-select-2-placeholder"]');
@@ -82,37 +94,15 @@ describe("Open the browser and verify the Inquiry of the leads,", function () {
     console.log("Selected the dropdown option successfully", dropdownList);
     await browser.pause(4000); // Optional pause for observation
   });
-  // it("selects an option from dropdown and verifies in input field", async function () {
-  //   // Step 1: Click on the input field to open the dropdown
-  //   const inputField = await $(
-  //     '//*[@id="root"]/div/div/div[1]/div[3]/div[2]/div/div[2]/form/div[1]/div[4]/div/div[1]'
-  //   );
-  //   await inputField.click(); // Open dropdown options
-  //   await browser.pause(2000); // Optional pause to allow options to appear
-
-  //   // Step 2: Select the desired option
-  //   const options = await $$('//*[@id="react-select-2-listbox"]//div'); // Adjusted selector for all options
-  //   for (const option of options) {
-  //     const text = await option.getText();
-  //     if (text === "Bangladesh tour of India") {
-  //       // Select based on visible text
-  //       await option.click();
-  //       break;
-  //     }
-  //   }
-
-  //   // Step 3: Verify the selected option appears in the input field
-  //   const selectedText = await inputField.getValue();
-  //   console.log("Selected option in input field:", selectedText); // Optional: logs the selected option text
-  //   expect(selectedText).toBe("Option 2"); // Verifies the input field contains "Option 2"
-  // });
   it("verify checkbox is clickable", async function () {
+    allureReporter.addStep("verify the URL with title name");
     let checkbox = $('//*[@id="enquire_checkbox"]'); //*[@id="enquire_checkbox"]
     single_click(checkbox);
     await browser.pause(2000);
   });
   // *[@id="submit_enquire_button"]
   it("verify submit_button is clickable", async function () {
+    allureReporter.addStep("verify the URL with title name");
     let sumit_button = $('//*[@id="submit_enquire_button"]');
     //*[@id="enquire_checkbox"]
     single_click(sumit_button);

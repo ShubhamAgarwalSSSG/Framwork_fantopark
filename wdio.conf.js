@@ -1,4 +1,5 @@
 let currentSessionId = null;
+// const { addStep, addAttachment } = require("@wdio/allure-reporter").default;
 export const config = {
   //
   // ====================
@@ -135,7 +136,14 @@ export const config = {
   // see also: https://webdriver.io/docs/dot-reporter
   reporters: [
     "spec",
-    ["allure", { outputDir: "allure-results" }],
+    [
+      "allure",
+      {
+        outputDir: "allure-results",
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+      },
+    ],
     "mochawesome",
   ],
 
@@ -143,6 +151,7 @@ export const config = {
   // See the full list at http://mochajs.org/
   mochaOpts: {
     ui: "bdd",
+    retries: 0,
     timeout: 120000,
   },
 
@@ -187,6 +196,7 @@ export const config = {
     // Just for logging; no cleanup operations here
     console.log("Session cleanup completed by WebdriverIO.");
   },
+
   // WebdriverIO provides several hooks you can use to interfere with the test process in order to enhance
   // it and to build services around it. You can either apply a single function or an array of
   // methods to it. If one of them returns with a promise, WebdriverIO will wait until that promise got

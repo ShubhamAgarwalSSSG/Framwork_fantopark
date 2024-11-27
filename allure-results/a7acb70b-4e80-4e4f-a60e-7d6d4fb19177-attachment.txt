@@ -1,9 +1,0 @@
-{
-  "script": "<script> [5803 bytes]",
-  "args": [
-    {
-      "element-6066-11e4-a52e-4f735466cecf": "node-65B7A8DA-EAC0-40D1-B870-8DB5A87BB4CC",
-      "ELEMENT": "node-65B7A8DA-EAC0-40D1-B870-8DB5A87BB4CC"
-    }
-  ]
-}

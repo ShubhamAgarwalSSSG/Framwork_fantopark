@@ -1,4 +1,0 @@
-{
-  "script": "<script> [433 bytes]",
-  "args": []
-}

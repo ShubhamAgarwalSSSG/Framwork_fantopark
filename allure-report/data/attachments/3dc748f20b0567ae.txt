@@ -1,3 +1,0 @@
-{
-  "handle": "page-8045239D-0764-4DFD-BBAF-9B25F7EE95DB"
-}
